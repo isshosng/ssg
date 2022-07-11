@@ -25,6 +25,7 @@ public class AppTest {
         assertEquals("명언1", content);
         assertEquals("작가1", author);
     }
+
     @Test
     public void 표준출력을_리다이렉션하여_결과를_문자열로_받기() throws IOException {
         // 표준출력을 리다이렉션
