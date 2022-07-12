@@ -5,6 +5,26 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AppTest {
     @Test
+    public void Rq__getIntParam(){
+        Rq rq = new Rq("삭제?id=1");
+
+        int id = rq.getIntParam("id",0);
+
+        assertEquals(1,id); // to see if 1 comes into the id
+    }
+
+    @Test
+    public void Rq__getIntParam__2(){
+        Rq rq = new Rq("검색?id=10&no=1");
+
+        int id = rq.getIntParam("id",0);
+        int no = rq.getIntParam("no",0);
+
+        assertEquals(10,id); //to see if 10 comes into the id
+        assertEquals(1,no); // to see if 1 comes tinto the no
+    }
+
+    @Test
     public void 테스트_실험() {
         int rs = 10 + 20;
         assertEquals(30, rs);
