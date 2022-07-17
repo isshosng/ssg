@@ -1,23 +1,26 @@
 package com.ll.exam;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class App {
-    private Scanner sc;
+    private BufferedReader br;
+    private WiseSayingController wiseSayingController;
 
-    public App() {
-        sc = new Scanner(System.in);
+    public App(BufferedReader br) {
+        this.br = br; // 여기서 br는 이거만!
+        wiseSayingController = new WiseSayingController(br);
     }
 
-    public void run() {
-        System.out.println("== 명언 SSG ==");
-
-        WiseSayingController wiseSayingController = new WiseSayingController(sc);
+    public void run() throws IOException {
+        System.out.println("== 명언 SSG =="); // 초기 출력 화면
 
         outer:
         while (true) {
-            System.out.printf("명령) ");
-            String cmd = sc.nextLine().trim();
+            System.out.print("명령) ");
+            String cmd = br.readLine().trim();
 
             Rq rq = new Rq(cmd);
 
@@ -38,7 +41,7 @@ public class App {
                     break outer;
             }
         }
-
-        sc.close();
+        br.close();
     }
 }
+

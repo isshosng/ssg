@@ -1,27 +1,51 @@
 package com.ll.exam;
+
 import org.junit.jupiter.api.Test;
+
 import java.io.*;
 import java.util.Scanner;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AppTest {
     @Test
-    public void Rq__getIntParam(){
-        Rq rq = new Rq("삭제?id=1");
+    void 파일에_내용쓰기() {
+        Util.mkdir("test_data");
+        Util.saveToFile("test_data/1.json", "내용\n");
 
-        int id = rq.getIntParam("id",0);
+        String rs = Util.readFromFile("test_data/1.json");
 
-        assertEquals(1,id); // to see if 1 comes into the id
+
+        assertEquals("내용",rs);
     }
 
     @Test
-    public void Rq__getIntParam__2(){
+    public void Rq__getPath() {
+        Rq rq = new Rq("삭제?id=1");
+
+        String path = rq.getPath();
+
+        assertEquals("삭제", path);
+    }
+
+    @Test
+    public void Rq__getIntParam() {
+        Rq rq = new Rq("삭제?id=1");
+
+        int id = rq.getIntParam("id", 0);
+
+        assertEquals(1, id);
+    }
+
+    @Test
+    public void Rq__getIntParam__2() {
         Rq rq = new Rq("검색?id=10&no=1");
 
-        int id = rq.getIntParam("id",0);
-        int no = rq.getIntParam("no",0);
+        int id = rq.getIntParam("id", 0);
+        int no = rq.getIntParam("no", 0);
 
-        assertEquals(10,id); //to see if 10 comes into the id
-        assertEquals(1,no); // to see if 1 comes tinto the no
+        assertEquals(10, id);
+        assertEquals(1, no);
     }
 
     @Test
@@ -29,6 +53,7 @@ public class AppTest {
         int rs = 10 + 20;
         assertEquals(30, rs);
     }
+
     @Test
     public void 문자열을_스캐너의_입력으로_설정() {
         String input = """
@@ -38,9 +63,11 @@ public class AppTest {
                 """.stripIndent();
         InputStream in = new ByteArrayInputStream(input.getBytes());
         Scanner sc = new Scanner(in);
+
         String cmd = sc.nextLine().trim();
         String content = sc.nextLine().trim();
         String author = sc.nextLine().trim();
+
         assertEquals("등록", cmd);
         assertEquals("명언1", content);
         assertEquals("작가1", author);
@@ -60,6 +87,7 @@ public class AppTest {
         // 표준출력을 원상복구
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
         output.close();
+
         assertEquals("안녕", rs);
     }
 }

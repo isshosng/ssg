@@ -1,5 +1,6 @@
 package com.ll.exam;
 
+// 여긴 고칠 거 없음
 public class WiseSaying {
     int id;
     String content;
@@ -18,5 +19,8 @@ public class WiseSaying {
                 ", content='" + content + '\'' +
                 ", author='" + author + '\'' +
                 '}';
+    }
+
+    public void remove(WiseSaying wiseSaying) {
     }
 }

@@ -36,7 +36,7 @@ public class Rq {
     }
 
     public int getIntParam(String paramName, int defaultValue) {
-        if (queryParams.containsKey(paramName) == false) {
+        if (!queryParams.containsKey(paramName)) {
             return defaultValue;
         }
 
